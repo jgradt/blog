@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: jgradt.github.io
-baseurl: "jgradt_blog" # the subpath of your site, e.g. /blog
+baseurl: /jgradt_blog # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  jgradt
 
