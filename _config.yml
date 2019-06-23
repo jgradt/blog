@@ -19,11 +19,23 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  jgradt
 
 # Build settings
+highlighter: rouge
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
 
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    #default_lang: html
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+      
 defaults:
   -
     scope:

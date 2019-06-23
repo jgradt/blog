@@ -21,11 +21,11 @@ I created this project in order to learn more about [GraphQL](https://graphql.or
 
 The code to implement the GraphQL functionality is primarily in a folder named "GraphQL" in the project
 
-![screenshot](/assets/graphqldemo/images/graphql-folder.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphql-folder.png)
 
 This implementation uses the GraphType First approach of GraphQL.Net in the above, highlighted classes.  Below is a sample of how I coded the `CustomerGraphType` and retrieved the data from the backend data source.  I already had coded some repository classes that could interact with my data source, so I decided to make use of those.  The repository classes can be injected into the `ObjectGraphType` classes and then used to retrieve the data without writing a lot of extra code.
 
-{% highlight csharp %}
+```csharp
 
 public class CustomerGraphType : ObjectGraphType<Customer>
 {
@@ -57,11 +57,11 @@ public class CustomerGraphType : ObjectGraphType<Customer>
     }
 }
 
-{% endhighlight %}
+```
 
 Some additional code also exists in the Startup class of the project to configure dependency injection…
 
-{% highlight csharp %}
+```csharp
 
 // repository types
 services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -79,15 +79,15 @@ services.AddGraphQL(x =>
 })
 .AddGraphTypes(ServiceLifetime.Scoped);
 
-{% endhighlight %}
+```
 
 … and to enable the iGraphQL UI…
 
-{% highlight csharp %}
+```csharp
 
 app.UseGraphiQl("/graphql");
 
-{% endhighlight %}
+```
 
 ## UI Data Exploration
 
@@ -97,7 +97,7 @@ app.UseGraphiQl("/graphql");
 
 A UI to explore and test the REST endpoints is included.  Once you run the project, it is located at `http://localhost:54618/swagger` and uses the Swagger UI to allow for testing the different endpoints.
 
-![screenshot](/assets/graphqldemo/images/swagger-ui.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/swagger-ui.png)
 
 ### GraphiQL
 
@@ -105,23 +105,23 @@ A UI to explore and test the GraphQL endpoint is also included.  Once you run th
 
 #### Get an order by id with details
 
-![screenshot](/assets/graphqldemo/images/graphiql-order-by-id.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-order-by-id.png)
 
 #### Get two customers using one query
 
-![screenshot](/assets/graphqldemo/images/graphiql-two-customers.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-two-customers.png)
 
 #### Get a Customer with Orders by customer id using an input variable
 
-![screenshot](/assets/graphqldemo/images/graphiql-customer-with-orders.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-customer-with-orders.png)
 
 #### Get a product without supplying the id (expect an error)
 
-![screenshot](/assets/graphqldemo/images/graphiql-product-with-error.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-product-with-error.png)
 
 #### Get first n customers
 
-![screenshot](/assets/graphqldemo/images/graphiql-get-customers.png)
+![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-get-customers.png)
 
 ## Authorization
 
