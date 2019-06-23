@@ -1,13 +1,15 @@
 ---
 layout: post
-title: GraphQL.Net with Asp.Net Core and C# 
+title: GraphQL with Asp.Net Core and C# 
 categories: repos graphqldemo
 permalink: /:categories
 ---
 
 ## Introduction
 
-I created this project in order to learn more about [GraphQL](https://graphql.org).  I decided to enhance an [existing project](https://github.com/jgradt/Angular4Demo/tree/master/WebApiDemo) I previously wrote that used Asp.net Core, Entity Framework, and many custom repository classes.  I used the [GraphQL.Net](https://github.com/graphql-dotnet/graphql-dotnet) nuget package and some online resources to help me do this.  To learn more about GraphQL and GraphQL.Net, see some of the additional resources at the bottom of this page.
+I created this project in order to learn more about [GraphQL](https://graphql.org).  I decided to enhance an [existing project]( {{ site.baseurl }}{% post_url 2019-06-20-angular4demo1 %} ) I previously wrote that used Asp.net Core, Entity Framework, and many custom repository classes.  I used the [graphql-dotnet](https://github.com/graphql-dotnet/graphql-dotnet) nuget package and some online resources to help me do this.  To learn more about GraphQL and graphql-dotnet, see some of the additional resources at the bottom of this page.
+
+* View [Project Repo](https://github.com/jgradt/GraphQLDemo)
 
 ## Overview
 
@@ -23,9 +25,9 @@ The code to implement the GraphQL functionality is primarily in a folder named "
 
 ![screenshot]({{ '/assets/graphqldemo/images/graphql-folder.png' | relative_url }})
 
-This implementation uses the GraphType First approach of GraphQL.Net in the above, highlighted classes.  Below is a sample of how I coded the `CustomerGraphType` and retrieved the data from the backend data source.  I already had coded some repository classes that could interact with my data source, so I decided to make use of those.  The repository classes can be injected into the `ObjectGraphType` classes and then used to retrieve the data without writing a lot of extra code.
+This implementation uses the GraphType First approach of graphql-dotnet in the above, highlighted classes.  Below is a sample of how I coded the `CustomerGraphType` and retrieved the data from the backend data source.  I already had coded some repository classes that could interact with my data source, so I decided to make use of those.  The repository classes can be injected into the `ObjectGraphType` classes and then used to retrieve the data without writing a lot of extra code.
 
-```csharp
+```
 
 public class CustomerGraphType : ObjectGraphType<Customer>
 {
@@ -61,7 +63,7 @@ public class CustomerGraphType : ObjectGraphType<Customer>
 
 Some additional code also exists in the Startup class of the project to configure dependency injection…
 
-```csharp
+```
 
 // repository types
 services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -83,7 +85,7 @@ services.AddGraphQL(x =>
 
 … and to enable the iGraphQL UI…
 
-```csharp
+```
 
 app.UseGraphiQl("/graphql");
 

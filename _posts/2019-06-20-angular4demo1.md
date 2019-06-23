@@ -11,6 +11,9 @@ I created this solution to help me learn more about Angular and how I could use 
 
 *NOTE: I actually wrote the code for this repository a while ago, but I thought I'd write this post to document a bit of how it works*
 
+* Read [Part 2]( {{ site.baseurl }}{% post_url 2019-06-21-angular4demo2 %} )
+* View [Project Repo](https://github.com/jgradt/Angular4Demo)
+
 ## Overview
 
 * Front-end SPA is created with Angular 4 written in Typescript
@@ -26,7 +29,7 @@ I created this solution to help me learn more about Angular and how I could use 
 
 To begin with, lets define and set up the database schema and the data.  The purpose of this solution is to manage the data for customers and orders.  Therefore, we will need to start by creating a `DbContext` with those two tables in the schema along with their corresponding Entity classes.
 
-```csharp
+```
 
 public class DemoDbContext : DbContext
 {
@@ -49,7 +52,7 @@ public class DemoDbContext : DbContext
 
 ```
 
-```csharp
+```
 
 public class Customer : IDataEntity
 {
@@ -69,7 +72,7 @@ The classes in the "Entity" folder are the Entity Framework classes correspondin
 
 We also need some data transfer objects.  These are located in the "Dto" folder of the project and represent the data structure that will be passed to and from the client.  Not all of the fields in the Entity classes need to match exactly to the fields in the Dto classes.
 
-```csharp
+```
 
 public class CustomerDto
 {
@@ -115,7 +118,7 @@ Next, I want to create some repository classes to give standard methods for comm
 
 The repository classes are very simple in their implementations.  That is because they inherit from a base class that provides the same basic operations to each repository.
 
-```csharp
+```
 
 public interface IBaseDataRepository<TEntity>
     where TEntity: class, IDataEntity
@@ -151,7 +154,7 @@ public class BaseDataRepository<TEntity> : IBaseDataRepository<TEntity>
 
 To create a new repository, simply inherit from the `BaseDataRepository` class.  I have also created an interface for each repository that inherits from `IBaseDataRepository`.  These interfaces will be used along with a dependency injection container to inject the appropriate repository classes into controllers as needed.
 
-```csharp
+```
 
 public interface ICustomerRepository : IBaseDataRepository<Customer>
 {
@@ -177,7 +180,7 @@ public class CustomerRepository : BaseDataRepository<Customer>, ICustomerReposit
 
 In addition, the base repository provides a way to return paged data in case there are too many records to be returned at once.  I have created a separate Dto for this.  It contains the information relating to the page and total number of items as well as the subset of items themselves.
 
-```csharp
+```
 
 public class PagedData<TData>
 {
@@ -193,7 +196,7 @@ public class PagedData<TData>
 
 Now we need some Api Controllers that can accept Http requests, call methods on the repository classes, and return the data to the client.
 
-```csharp
+```
 
 [Authorize(Roles = "Admin")]
 [Route("api/customers")]
@@ -246,7 +249,7 @@ public class CustomersController : Controller
 
 Json Web Tokens (JWTs) are used for authorization.  A REST endpoint exists on the `TokenController` that accepts login information and will return a JWT.  The token contains information such as the issuer and expiration date of that token.  It also contains a list of claims relevant to that user such as their name and authorized roles for calling the api endpoints.  The claims information returned in the JWT can be customized as desired.  In a real application, the login information would be verified with the user name and password against a backend data store.  Once the client has obtained a token from the api, they will need to include that token in the Authorization header of each web request to the REST endpoints.
 
-```csharp
+```
 
 private object GenerateToken(string username)
 {
@@ -277,7 +280,7 @@ private object GenerateToken(string username)
 ```
 Each of the controllers that requires security has an `[Authorize]` attribute.  And the `StartupExtensions` class has some additional code to configure the JWT at startup.
 
-```csharp
+```
 
 public static void AddJwt(this IServiceCollection services, AppSettings appSettings)
 {
@@ -314,7 +317,7 @@ If an attempt is made to access the endpoint without a valid token in the reques
 
 There are a number of different statements that needed to be written in the `Configure` and `ConfigureServices` methods of the `Startup` class.  These statements register classes for dependency injection, configure the logging provider, seed the database on startup, and add/configure other services such as Json Web Tokens, Fluent Validation, AutoMapper, etc.  
 
-```csharp
+```
 
 // This method gets called by the runtime. Use this method to add services to the container.
 public void ConfigureServices(IServiceCollection services)

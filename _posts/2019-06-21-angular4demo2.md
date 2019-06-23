@@ -11,6 +11,9 @@ I created this solution to help me learn more about Angular and how I could use 
 
 *NOTE: I actually wrote the code for this repository a while ago, but I thought I'd write this post to document a bit of how it works*
 
+* Read [Part 1]( {{ site.baseurl }}{% post_url 2019-06-20-angular4demo1 %} )
+* View [Project Repo](https://github.com/jgradt/Angular4Demo)
+
 ## Overview
 
 * Front-end SPA is created with Angular 4 written in Typescript
@@ -30,7 +33,7 @@ Angular component classes have been created for each of the pages that are to be
 
 The `CustomerListComponent` contains some basic code for making a call to one of the REST endpoints and displaying the data on the screen.  The `CustomerService` service is injected into the constructor and the data is loaded upon initialization by calling a custom `loadData` function inside of the class.  That function then calls a method on the `CustomerService`, which returns an `Observable`.  When we subscribe to the Observable, we include a callback function that sets values on the component class.
 
-```typescript
+```
 
 export class CustomerListComponent implements OnInit {
 
@@ -60,9 +63,9 @@ export class CustomerListComponent implements OnInit {
 
 ```
 
-The UI is bound to the properties on the `CustomerListComponent`.   
+The UI is bound to the properties on the `CustomerListComponent`.
 
-```html
+```
 
 <table class='table table-striped table-hover table-condensed x-table-smaller-text'>
     <thead>
@@ -90,7 +93,7 @@ The UI is bound to the properties on the `CustomerListComponent`.
 
 The rest of the display screens have similar code for the components and html with some additional code where necessary to do things such as submit the data to the server.  I have also written a custom component to display validation messages called `ValidationMessageComponent`.  This works with the standard `Validators` to display the error messages in a consistent manner with some clean markup. 
 
-```html
+```
 
 <div class="form-group row" [ngClass]="{'has-error': mainForm.get('firstName').invalid}">
     <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
@@ -108,7 +111,7 @@ I have defined data entity interfaces to pass data back and forth between the cl
 
 WebApi DTO:
 
-```csharp
+```
 
 public class CustomerDto
 {
@@ -122,7 +125,7 @@ public class CustomerDto
 
 Angular data entity:
 
-```typescript
+```
 
 export interface ICustomer {
     id: number;
@@ -137,7 +140,7 @@ export interface ICustomer {
 
 Typescript service classes have been written to communicate with the REST services.  They encapsulate all of the functionality we need for the REST services and can be injected into the Angular component classes.
 
-```typescript
+```
 
 @Injectable()
 export class CustomerService {
@@ -179,7 +182,7 @@ export class CustomerService {
 
 The `AuthenticationService` communicates with the REST services on the server and adds/removes the security token in local storage.
 
-```typescript
+```
 
 @Injectable()
 export class AuthenticationService {
@@ -205,7 +208,7 @@ export class AuthenticationService {
 
 I have included some additional code that is part of the infrastructure of the site.  This includes Auth Guards and Http Interceptors.  The `AuthInterceptor` is responsible for getting the security token out of the local storage and adding it to the request header before it is sent to the REST service endpoints.
 
-```typescript
+```
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -233,7 +236,7 @@ There is also a `TimingInterceptor` that logs the elapsed time it takes to retur
 
 The `app.module.shared.ts` file in the project includes code to include the auth guards and interceptors appropriately.  This is also where all of the page routing is configured.
 
-```typescript
+```
 
     imports: [
         CommonModule,
@@ -292,7 +295,6 @@ The following images show the basics of the UI that is accomplished through the 
 
 ![screenshot]({{ '/assets/angular4demo/images/app-customer-details-page.png' | relative_url }})
 
-
 ## Conclusion
 
 Angular provides a nice framework to create Single Page Applications with html and Typescript.  I had to learn a few new technologies and frameworks to complete this, but I'm pretty happy with the result and how I could continue with these patterns to create a much larger and more complex site with many pages.
@@ -302,3 +304,5 @@ Angular provides a nice framework to create Single Page Applications with html a
 * <https://angular.io/>
 * <https://www.typescriptlang.org/>
 * <https://rxjs-dev.firebaseapp.com/guide/overview>
+* <https://app.pluralsight.com/library/courses/angular-2-getting-started-update/table-of-contents>
+* <https://app.pluralsight.com/library/courses/angular-2-reactive-forms/table-of-contents>
