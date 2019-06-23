@@ -26,7 +26,7 @@ I created this solution to help me learn more about Angular and how I could use 
 
 Angular component classes have been created for each of the pages that are to be displayed.  For managing the customer data, there are three components for the list, edit, and details screens.  
 
-![screenshot](/assets/angular4demo/images/client-app-components-customer.png)
+![screenshot]({{ '/assets/angular4demo/images/client-app-components-customer.png' | relative_url }})
 
 The `CustomerListComponent` contains some basic code for making a call to one of the REST endpoints and displaying the data on the screen.  The `CustomerService` service is injected into the constructor and the data is loaded upon initialization by calling a custom `loadData` function inside of the class.  That function then calls a method on the `CustomerService`, which returns an `Observable`.  When we subscribe to the Observable, we include a callback function that sets values on the component class.
 
@@ -229,7 +229,7 @@ export class AuthInterceptor implements HttpInterceptor {
 ```
 There is also a `TimingInterceptor` that logs the elapsed time it takes to return results from the REST service calls.  You can see the output in the console log of the browser.
 
-![screenshot](/assets/angular4demo/images/http-interceptor-timing-log.png)
+![screenshot]({{ '/assets/angular4demo/images/http-interceptor-timing-log.png' | relative_url }})
 
 The `app.module.shared.ts` file in the project includes code to include the auth guards and interceptors appropriately.  This is also where all of the page routing is configured.
 
@@ -274,23 +274,23 @@ The following images show the basics of the UI that is accomplished through the 
 
 ### Home Page
 
-![screenshot](/assets/angular4demo/images/app-home-page.png)
+![screenshot]({{ '/assets/angular4demo/images/app-home-page.png' | relative_url }})
 
 ### Login Page
 
-![screenshot](/assets/angular4demo/images/app-login-page.png)
+![screenshot]({{ '/assets/angular4demo/images/app-login-page.png' | relative_url }})
 
 ### Customer List Page
 
-![screenshot](/assets/angular4demo/images/app-customers-page.png)
+![screenshot]({{ '/assets/angular4demo/images/app-customers-page.png' | relative_url }})
 
 ### Customer Edit Page
 
-![screenshot](/assets/angular4demo/images/app-customer-edit-page.png)
+![screenshot]({{ '/assets/angular4demo/images/app-customer-edit-page.png' | relative_url }})
 
 ### Customer Details Page
 
-![screenshot](/assets/angular4demo/images/app-customer-details-page.png)
+![screenshot]({{ '/assets/angular4demo/images/app-customer-details-page.png' | relative_url }})
 
 
 ## Conclusion

@@ -21,7 +21,7 @@ I created this project in order to learn more about [GraphQL](https://graphql.or
 
 The code to implement the GraphQL functionality is primarily in a folder named "GraphQL" in the project
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphql-folder.png)
+![screenshot]({{ '/assets/graphqldemo/images/graphql-folder.png' | relative_url }})
 
 This implementation uses the GraphType First approach of GraphQL.Net in the above, highlighted classes.  Below is a sample of how I coded the `CustomerGraphType` and retrieved the data from the backend data source.  I already had coded some repository classes that could interact with my data source, so I decided to make use of those.  The repository classes can be injected into the `ObjectGraphType` classes and then used to retrieve the data without writing a lot of extra code.
 
@@ -97,7 +97,7 @@ app.UseGraphiQl("/graphql");
 
 A UI to explore and test the REST endpoints is included.  Once you run the project, it is located at `http://localhost:54618/swagger` and uses the Swagger UI to allow for testing the different endpoints.
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/swagger-ui.png)
+![screenshot]({{ '/assets/graphqldemo/images/swagger-ui.png' | relative_url }})
 
 ### GraphiQL
 
@@ -105,23 +105,23 @@ A UI to explore and test the GraphQL endpoint is also included.  Once you run th
 
 #### Get an order by id with details
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-order-by-id.png)
+![screenshot]({{ '/assets/graphqldemo/images/graphiql-order-by-id.png' | relative_url }})
 
 #### Get two customers using one query
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-two-customers.png)
+![screenshot]({{ '/assets/graphqldemo/images/graphiql-two-customers.png' | relative_url }})
 
 #### Get a Customer with Orders by customer id using an input variable
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-customer-with-orders.png)
+![screenshot]({{ '/assets/graphqldemo/images/graphiql-customer-with-orders.png' | relative_url }})
 
 #### Get a product without supplying the id (expect an error)
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-product-with-error.png)
+![screenshot]({{ '/assets/graphqldemo/images/graphiql-product-with-error.png' | relative_url }})
 
 #### Get first n customers
 
-![screenshot]({{ site.baseurl }}/assets/graphqldemo/images/graphiql-get-customers.png)
+![screenshot]({{ '/assets/graphqldemo/images/graphiql-get-customers.png' | relative_url }})
 
 ## Authorization
 

@@ -364,7 +364,7 @@ Swagger has made it very easy to test the endpoints.  Adding it to the project i
 
 Since the endpoints are protected with the security of JWTs, you'll need to get a token and authorize first.  You just need to post to the `api/token` endpoint of the `TokenController` to begin with.  Take the resulting token and use it when you click the Authorize button at the top of the Swagger UI screen.  Now you can test the endpoints and see the results.
 
-![screenshot](/assets/angular4demo/images/swagger-ui-get-customer.png)
+![screenshot]({{ '/assets/angular4demo/images/swagger-ui-get-customer.png' | relative_url }})
 
 ## Conclusion
 
